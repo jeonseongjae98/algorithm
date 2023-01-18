@@ -1,8 +1,8 @@
-word = list(input())
+word = input()
 words = 'CAMBRIDGE'
-a = ""
-for i in range(len(word)):
-    if word[i] in words:
-        word[i] = ''
+a = ''
 for i in word:
-    print(i, end='')
+    if i not in words:
+        a += i
+
+print(a)
