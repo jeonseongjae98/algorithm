@@ -3,9 +3,12 @@ n = N
 cnt = 0
 
 while True:
-    n = (n % 10 * 10) + ((n // 10 + n % 10) % 10)
+    a = n // 10
+    b = n % 10
+    c = (a + b) % 10
+    n = (b * 10) + c
     cnt += 1
-
+    
     if n == N:
         break
 print(cnt)
