@@ -4,4 +4,4 @@ d = []
 while len(q) > 1:
     d.append(q.pop(0))
     q.append(q.pop(0))
-print(*d, q[0])
+print(*d, *q)
