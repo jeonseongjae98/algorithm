@@ -1,13 +1,9 @@
 T = int(input()) # 테스트 케이스 수
-
-for t in range(T):
-    n = int(input())
-    a = []
-    a.append(n // 25)
-    n %= 25
-    a.append(n // 10)
-    n %= 10
-    a.append(n // 5)
-    n %= 5
-    a.append(n // 1)
-    print(*a)
+for i in range(T):
+    N = int(input())
+    M = [25, 10, 5, 1]
+    result = []
+    for j in M:
+        result.append(N // j)
+        N = N % j
+    print(*result)
