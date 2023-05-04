@@ -4,7 +4,7 @@ def solution(n):
     while(n>=fac):
         answer += 1
         fac = fac * answer
-        
+    
     answer -= 1
 
     return answer
