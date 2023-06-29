@@ -1,5 +1,14 @@
-b, c = map(int, input().split())
-if (b == 1 and c == 3) or (b == 2 and c == 1) or (b == 3 and c == 2):
-    print('A')
-else:
-    print('B')
+a, b = map(int, input().split())
+
+if a == 1 and b == 3:
+  print("A")
+elif a == 1 and b == 2:
+  print("B")
+elif a == 2 and b == 1:
+  print("A")
+elif a == 2 and b == 3:
+  print("B")
+elif a == 3 and b == 1:
+  print("B")
+elif a == 3 and b == 2:
+  print("A")
