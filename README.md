@@ -1,2 +1,2 @@
-# algorithm 
-## 1일 1커밋
+# algorithm
+### 1일 1커밋
