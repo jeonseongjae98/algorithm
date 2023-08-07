@@ -11,12 +11,13 @@ public class Solution {
 			int N = Integer.parseInt(br.readLine());
 			int[] arr = new int[N];
 			StringTokenizer st = new StringTokenizer(br.readLine());
+            
 			for(int j = 0; j < N; j++) {
 			//  배열에 층수 담기
 				arr[j] = Integer.parseInt(st.nextToken());
 			}
 			for(int k = 2; k < arr.length-2; k++) { 
-				if(k < arr.length - 2) {
+
 					if(arr[k] > arr[k+1] && arr[k] > arr[k+2] && arr[k] > arr[k-1] && arr[k] > arr[k-2]) {
 						int n1 = arr[k] - arr[k+1];
 						int n2 = arr[k] - arr[k+2];
@@ -26,7 +27,7 @@ public class Solution {
 						int re1 = Math.min(n3, n4);
 						int re2 = Math.min(re, re1);
 						sum += re2;
-					}
+					
 				}
 			}
 			System.out.printf("#%d %d%n", i, sum);
