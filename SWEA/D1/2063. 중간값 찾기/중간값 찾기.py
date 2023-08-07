@@ -1,21 +1,23 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.StringTokenizer;
 
-
-class Solution
-{
-	public static void main(String args[]) throws Exception
-	{
-		Scanner sc = new Scanner(System.in);
-		int T;
-		T=sc.nextInt();
-		int[] nums = new int[T];
-		for (int i = 0; i < T; i++) {
-			nums[i] = sc.nextInt();
-		}
-		Arrays.sort(nums);
-		System.out.println(nums[T/2]);
+public class Solution {
+	public static void main(String args[]) throws Exception{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int N = Integer.parseInt(br.readLine());
 		
-
+		int[] arr = new int[N];
+		
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		for(int i = 0; i < N; i++) {
+			arr[i] = Integer.parseInt(st.nextToken());
+		}
+		Arrays.sort(arr);
+		
+		System.out.println(arr[(N/2)]);
+	
 	}
+
 }
