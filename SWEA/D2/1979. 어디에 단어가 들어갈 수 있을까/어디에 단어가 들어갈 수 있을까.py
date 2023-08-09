@@ -1,23 +1,84 @@
-T = int(input()) # 테스트 케이스 수
-for t in range(T):
-    N, K = map(int, input().split())
-    arr = [list(map(int, input().split())) for _ in range(N)]
-    result = 0
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
-    for i in range(N):
-        cnt = 0
-        for j in range(N):
-            if arr[i][j] == 1:
-                cnt += 1
-            if arr[i][j] == 0 or j == N - 1:
-                if cnt == K:
-                    result += 1
-                cnt = 0
-        for j in range(N):
-            if arr[j][i] == 1:
-                cnt += 1
-            if arr[j][i] == 0 or j == N - 1:
-                if cnt == K:
-                    result += 1
-                cnt = 0
-    print(f'#{t+1}', result)
+public class Solution {
+    public static void main(String args[]) throws NumberFormatException, IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(br.readLine());
+        
+        for(int tc = 1; tc <= t; tc++) {
+
+        	StringTokenizer st = new StringTokenizer(br.readLine());
+        	int N = Integer.parseInt(st.nextToken());
+        	int M = Integer.parseInt(st.nextToken());
+        	
+        	
+        	int[][] arr = new int[N+1][N+1];
+        	
+        	// 2차원 배열에 값 넣기
+        	for(int i = 0; i < N; i++) {
+        		st = new StringTokenizer(br.readLine());
+        		for(int j = 0; j < N; j++) {
+        			arr[i][j] = Integer.parseInt(st.nextToken());
+        		}
+        	}
+        	
+        	int cnt = 0;
+        	
+        	//가로 계산
+        	for(int i = 0; i < N; i++) {
+        		int sum = 0;
+        		for(int j = 0; j < N; j++) {
+        			if(arr[i][j] == 1) {
+        				sum += 1;
+        				if(arr[i][j+1] == 0) {
+        					if(sum == M) {
+                				cnt += 1;
+                				
+                			}
+        					sum = 0;
+        				}
+        				
+        			}
+        			
+        		}
+        		
+        	}
+        	
+        	
+        	//세로 계산
+        	for(int j = 0; j < N; j++) {
+        		int sum = 0;
+        		for(int i = 0; i < N; i++) {
+        			if(arr[i][j] == 1) {
+        				sum += 1;
+        				
+        				if(arr[i+1][j] == 0) {
+        					if(sum == M) {
+                				cnt += 1;
+                			}
+        					sum = 0;
+        				}
+        				
+        				
+        				
+        			}
+        			
+        		}
+        			
+        			
+        		
+        	}
+        	System.out.printf("#%d %d%n", tc, cnt);
+        	
+        	
+        }
+    	
+    	
+    	
+    
+
+        }
+    }
