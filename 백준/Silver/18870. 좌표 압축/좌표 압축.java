@@ -26,16 +26,16 @@ public class Main {
         
         // 순위
         int r = 0;
-        for(int i : arr) {
-        	if(!rMap.containsKey(i)) {
-        		rMap.put(i, r);
+        for(int key : arr) {
+        	if(!rMap.containsKey(key)) {
+        		rMap.put(key, r);
         		r++;
         	}
         }
         
         StringBuilder sb = new StringBuilder();
         
-        	
+        // key에 해당하는 rank 가져오기!
         for(int key : oarr) {
         	sb.append(rMap.get(key)).append(" ");
         }
