@@ -1,40 +1,77 @@
-# 테스트 케이스 개수
-T = int(input())
-for tc in range(1,T+1):
-    arr = [list(map(int,input().split())) for _ in range(9)]
-    result = 1
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
-    for i in range(9):
-        # 숫자에 해당하는 idx에 1 추가
-        # 요소에 숫자가 2이상인 것이 있으면 스도쿠 X
-        
-        # 가로 검사
-        lst_h = [0] * 10
-        # 세로 검사
-        lst_v = [0]*10
-        for j in range(9):
-            # 가로검사
-            lst_h[arr[i][j]] += 1
-            if lst_h[arr[i][j]] != 1:
-                result = 0
-                break
-            # 세로 검사
-            lst_v[arr[j][i]] += 1
-            if lst_v[arr[j][i]] != 1:
-                result = 0
-                break
+public class Solution {
+	public static void main(String[] args) throws IOException {
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int t = Integer.parseInt(br.readLine());
+		for (int tc = 1; tc <= t; tc++) {
+			int re = 1;
+			int arr[][] = new int[9][9];
+			for (int i = 0; i < 9; i++) {
+				StringTokenizer st = new StringTokenizer(br.readLine());
+				for (int j = 0; j < 9; j++) {
+					arr[i][j] = Integer.parseInt(st.nextToken());
+					
+				}
+				
+			}//배열에 입력 받기
+			
+			// 가로 확인
+			for (int i = 0; i < 9; i++) {
+				int num[] = new int[10];
+				for (int j = 0; j < 9; j++) {
+					num[arr[i][j]]++;
+				}
+				for(int j = 1; j <= 9; j++) {
+					if(num[j] != 1) {
+						re = 0;
+						break;
+					}
+				}
+				
+			}
+			
+			// 세로 확인
+			for (int i = 0; i < 9; i++) {
+				int num[] = new int[10];
+				for (int j = 0; j < 9; j++) {
+					num[arr[j][i]]++;
+				}
+				for(int j = 1; j <= 9; j++) {
+					if(num[j] != 1) {
+						re = 0;
+						break;
+					}
+				}
+				
+			}
+			
+			// 3x3 확인
+			for (int i = 0; i < 9; i+=3) {
+				for (int j = 0; j < 9; j+=3) {
+					int num[] = new int[10];
+					for(int k = 0; k < 3; k++) {
+						for(int l = 0; l < 3; l++) {
+							num[arr[i+k][j+l]]++;
+						}
+					}
+					for(int u = 1; u <= 9; u++) {
+						if(num[u] != 1) {
+							re = 0;
+							break;
+						}
+					}
+				}
+				
+			}
+			
+			
+			System.out.println("#"+tc +" " + re);
+		}
+	}
 
-    # 3*3 검사
-    # x,y 3*3스도쿠 검사의 시작점
-    for x in range(0,9,3):
-        for y in range(0,9,3):
-            # 3*3 검사
-            lst_3 = [0] * 10
-            for i in range(3):
-                for j in range(3):
-                    lst_3[arr[x+i][y+j]] += 1
-                    if lst_3[arr[x+i][y+j]] != 1:
-                        result = 0
-                        break
-
-    print(f'#{tc} {result}')
+}
