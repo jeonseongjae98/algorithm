@@ -9,15 +9,18 @@ public class Solution {
 
 		for (int tc = 1; tc <= t; tc++) {
 			String s = br.readLine();
-			int arr[] = new int[s.length()];
+			char arr[] = new char[s.length()];
 
 			for (int i = 0; i < s.length(); i++) {
-				arr[i] = s.charAt(i) - '0';
+				arr[i] = s.charAt(i);
 			} // 배열에 넣기
-			int ans = arr[0];
-			for (int i = 1; i < s.length(); i++) {
-				if (arr[i] != arr[i - 1]) {
+			int ans = 0;
+			char N= '0';
+			
+			for (int i = 0; i < s.length(); i++) {
+				if (arr[i] != N) {
 					ans++;
+					N = arr[i];
 				}
 
 			}
