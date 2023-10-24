@@ -1,31 +1,29 @@
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Main {
-    static long[] arr = new long[64];
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        long k = sc.nextLong();
+	static long[] arr;
 
-        //1. 처음 2^n개의 원소가 한번 결정되어 문자열 s를 형성하면,
-        for (int i = 0; i < arr.length; i++) {
-			arr[i] = (long)Math.pow(2, i); 
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		long N = Long.parseLong(br.readLine());
+
+		arr = new long[64];
+		arr[0] = 1;
+		for (int i = 1; i < 64; i++) {
+			arr[i] = arr[i - 1] * 2;
 		}
-       
-        System.out.println(solv(k));
-    }
+		System.out.println(sol(N));
+	}
 
-    public static int solv(long k) {
-        if (k == 1)  return 0;//2. 다음 2^n개의 원소는 s의 비트 단위 NOT으로 형성된다. t2n= tn
-        
-        long N = 0;
-        
-        for (int i = 0; i < arr.length; i++) {
-            if (k > arr[i]) N = arr[i];
-            else break;
-            
-        }
-        return 1 - solv(k - N);//3. 이제 처음 2^n+1개의 원소를 정의했으므로 재귀한다. t2n+1= 1 − tn.
-
-    }
-
+	public static int sol(long x) {
+		if (x == 1)
+			return 0;
+		for (int i = 0; i < 64; i++) {
+			if (arr[i] >= x)
+				return 1 - sol(x - arr[i - 1]);
+		}
+		return 0;
+	}
 }
