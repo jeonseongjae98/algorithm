@@ -44,10 +44,10 @@ public class Main {
 			int arr[] = new int[4];
 			size = size/2;
 			
-			arr[0] = recur(i,j,size);
-			arr[1] = recur(i,j+size,size);
-			arr[2] = recur(i+size,j,size);
-			arr[3] = recur(i+size,j+size,size);
+			arr[0] = recur(i,j,size); // 2사분면
+			arr[1] = recur(i,j+size,size); // 1사분면
+			arr[2] = recur(i+size,j,size); // 3사분면
+			arr[3] = recur(i+size,j+size,size); // 4사분면
 			
 			Arrays.sort(arr);
 			return arr[2];
