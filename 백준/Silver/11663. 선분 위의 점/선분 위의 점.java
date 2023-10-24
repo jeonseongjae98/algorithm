@@ -6,73 +6,68 @@ import java.util.StringTokenizer;
 
 class Main {
 
-    static int n;
-    static int m;
-    static long[] dot;
+	static int n;
+	static int m;
+	static long[] arr;
 
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String s = br.readLine();
-        StringTokenizer st = new StringTokenizer(s, " ");
-        n = Integer.parseInt(st.nextToken());
-        m = Integer.parseInt(st.nextToken());
-        dot = new long[n];
-        s = br.readLine();
-        st = new StringTokenizer(s, " ");
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+ 
+		n = Integer.parseInt(st.nextToken()); // 점의 개수
+		m = Integer.parseInt(st.nextToken()); // 선분의 개수
+		arr = new long[n]; // 점의 좌표를 담을 배열
 
-        for (int i = 0; i < n; i++) {
-            dot[i] = Long.parseLong(st.nextToken());
-        }
+		st = new StringTokenizer(br.readLine());
 
-        Arrays.sort(dot);
+		for (int i = 0; i < n; i++) {
+			arr[i] = Long.parseLong(st.nextToken());
+		}
 
-        StringBuilder sb = new StringBuilder();
+		Arrays.sort(arr); // 배열을 크기 순으로 정렬
 
-        for (int i = 0; i < m; i++) {
-            s = br.readLine();
-            st = new StringTokenizer(s, " ");
-            int result = binarySearch(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
-            sb.append(result).append('\n');
-        }
+		StringBuilder sb = new StringBuilder();
 
-        System.out.println(sb.toString().trim());
+		for (int i = 0; i < m; i++) {
+			st = new StringTokenizer(br.readLine());
+			int result = binarySearch(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
+			sb.append(result).append('\n');
+		}
 
-    }
+		System.out.println(sb);
 
-    static int binarySearch(int x, int y) {
-        int left = 0;
-        int right = dot.length - 1;
+	}
 
-        while (left <= right) {
-            int mid = (left + right) / 2;
+	static int binarySearch(int x, int y) {
+		int left = 0;
+		int right = arr.length - 1;
 
-            if (dot[mid] > y) {
-                right = mid - 1;
-            }
-            else {
-                left = mid + 1;
-            }
-        }
-        int endIndex = right + 1;
+		while (left <= right) {
+			int mid = (left + right) / 2;
 
-        left = 0;
-        right = dot.length - 1;
+			if (arr[mid] > y) {
+				right = mid - 1;
+			} else {
+				left = mid + 1;
+			}
+		}
+		int endIndex = right + 1; // 선분 위의 숫자 중에서 가장 큰 숫자를 가진 인덱스
 
-        while (left <= right) {
-            int mid = (left + right) / 2;
+		left = 0;
+		right = arr.length - 1;
 
-            if (dot[mid] < x) {
-                left = mid + 1;
-            }
-            else {
-                right = mid - 1;
-            }
-        }
-        int startIndex = left;
+		while (left <= right) {
+			int mid = (left + right) / 2;
 
-//        System.out.println("페어 : " + startIndex + " " + endIndex);
+			if (arr[mid] < x) {
+				left = mid + 1;
+			} else {
+				right = mid - 1;
+			}
+		}
+		int startIndex = left; // 선분 위의 숫자 중에서 가장 작은 숫자를 가진 인덱스
 
-        return endIndex - startIndex;
-    }
+		return endIndex - startIndex; // 둘의 차이를 계산해서 개수 계산!
+	}
 
 }
