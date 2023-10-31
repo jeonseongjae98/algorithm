@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.MappedByteBuffer;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
@@ -21,7 +22,6 @@ public class Main {
 		m = Integer.parseInt(st.nextToken());
 		map = new int[n][m];
 
-		
 		for (int i = 0; i < n; i++) {
 			String s = br.readLine();
 			for (int j = 0; j < m; j++) {
@@ -32,7 +32,7 @@ public class Main {
 		visited = new boolean[n][m];
 		visited[0][0] = true;
 		bfs(0, 0);
-		System.out.println(map[n - 1][m - 1]);
+		System.out.println(map[n-1][m-1]);
 
 	}
 
@@ -45,15 +45,15 @@ public class Main {
 			int nox = no[0];
 			int noy = no[1];
 			for (int i = 0; i < 4; i++) {
-				int nex = nox + dr[i]; // 다음 x값
-				int ney = noy + dc[i]; // 다음 
+				int nex = nox + dr[i]; // 다음으로 갈 x값
+				int ney = noy + dc[i]; // 다음으로 갈 y값
 
 				if (nex < 0 || ney < 0 || nex >= n || ney >= m || visited[nex][ney] || map[nex][ney] == 0)
 					continue;
-				
-				q.add(new int[] {nex, ney});
-				 map[nex][ney] = map[nox][noy] + 1;
-				 visited[nex][ney] = true;
+
+				q.add(new int[] { nex, ney });
+				map[nex][ney] = map[nox][noy] + 1;
+				visited[nex][ney] = true;
 			}
 
 		}
