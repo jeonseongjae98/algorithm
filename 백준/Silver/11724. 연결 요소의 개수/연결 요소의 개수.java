@@ -40,16 +40,12 @@ class Main {
 	}
 
 	static void dfs(int index) {
-		if (visited[index])
-			return;
-		else {
-			visited[index] = true;
-			for (int i = 1; i <= n; i++) {
-				if (map[index][i] == 1) {
-					dfs(i);
-				}
+		visited[index] = true;
+		for (int i = 1; i <= n; i++) {
+			if (!visited[i] && map[index][i] == 1) {
+				dfs(i);
 			}
 		}
-	}
 
+	}
 }
