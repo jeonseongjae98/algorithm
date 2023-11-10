@@ -1,45 +1,62 @@
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.StringTokenizer;
 
 public class Main {
+    static int k;
+    static int[] arr;
+    static List<ArrayList<Integer>> list;
 
-	static int K;
-	static int[] arr;
-	static StringBuffer[] ans;
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        k = Integer.parseInt(br.readLine());
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        StringBuilder sb = new StringBuilder();
 
-	public static void main(String[] args) throws Exception {
+        // 완전 이진 트리의 노드개수 = 2^k-1개
+        arr = new int[(int) Math.pow(2, k) - 1];
 
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        // 입력값 배열 삽입
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = Integer.parseInt(st.nextToken());
+        }
 
-		K = Integer.parseInt(br.readLine());
-		arr = new int[(int) Math.pow(2, K) - 1];
+        // depth에 맞게 노드를 저장하기 위한 list
+        list = new ArrayList<>();
+        for (int i = 0; i < k; i++) {
+            list.add(new ArrayList<>());
+        }
 
-		String[] input = br.readLine().split(" ");
-		for (int i = 0; i < arr.length; i++)
-			arr[i] = Integer.parseInt(input[i]);
+        // 탐색
+        search(0,arr.length - 1,0);
 
-		ans = new StringBuffer[K];
-		for (int i = 0; i < K; i++)
-			ans[i] = new StringBuffer();
+        // 출력을 위해 StringBuilder에 담기
+        for (int i = 0; i < k; i++) {
+            for (int j : list.get(i)) {
+                sb.append(j).append(" ");
+            }
+            sb.append("\n");
+        }
 
-		solve(0, arr.length - 1, 0);
+        System.out.println(sb);
+    }
+    static void search(int start, int end, int depth) {
+        // 재귀 탈출문
+        if(depth == k) {
+            return;
+        }
 
-		for (int i = 0; i < K; i++)
-			bw.write(ans[i].toString() + "\n");
-		bw.flush();
+        // 중간값
+        int mid = (start + end) / 2;
 
-	}
+        // depth에 맞게 노드 삽입
+        list.get(depth).add(arr[mid]);
 
-	public static void solve(int s, int e, int floor) {
-
-		if (floor == K)
-			return;
-
-		int m = (s + e) / 2;
-		ans[floor].append(arr[m] + " ");
-
-		solve(s, m - 1, floor + 1);
-		solve(m + 1, e, floor + 1);
-	}
-
+        // 왼쪽 노드(시작부터 중간 - 1 까지)
+        search(start, mid - 1, depth + 1);
+        // 오른쪽 노드 ( 중간 + 1 부터 끝까지)
+        search(mid + 1, end, depth + 1);
+    }
 }
