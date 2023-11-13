@@ -18,7 +18,7 @@ public class Main {
 		int ans = 0;
 		int start = 0;
 		int end = 0;
-		int cnt[] = new int[100001];
+		int cnt[] = new int[100001]; // 개수를 확인하는 배열
 		while(end < arr.length) {
 			while(end < arr.length && cnt[arr[end]] + 1 <= K) {
 				cnt[arr[end]]++;
