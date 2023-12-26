@@ -1,8 +1,6 @@
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -45,9 +43,12 @@ public class Main {
 
 				graph.get(a).add(b);
 				graph.get(b).add(a);
+				
+
 
 			}
-
+//			System.out.println(graph);
+			
 			// 아직 방문하지 않은 노드들을 확인해 트리인지 확인
 			// 루트 노드만 있어도 트리임
 			int tree = 0;
