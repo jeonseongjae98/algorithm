@@ -15,11 +15,11 @@ class Solution {
                 for(Integer a : setArr[j]) {
                     for(Integer b : setArr[i - j]) {
                         setArr[i].add(a + b);
-                        setArr[i].add(a - b);
+                        setArr[i].add(a - b); // 왜 중복?
                         setArr[i].add(b - a);
                         setArr[i].add(a * b);
                         if(b != 0) {
-                            setArr[i].add(a / b);
+                            setArr[i].add(a / b); // 왜 중복?
                         }
                         if(a != 0) {
                             setArr[i].add(b / a);
