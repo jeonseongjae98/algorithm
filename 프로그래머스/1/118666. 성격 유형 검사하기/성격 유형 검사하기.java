@@ -40,6 +40,7 @@ class Solution {
                 answer += alp[j*2];
             }
         }
+        
         return answer;
     }
 }
