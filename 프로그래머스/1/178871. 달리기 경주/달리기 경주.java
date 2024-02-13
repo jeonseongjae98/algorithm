@@ -6,6 +6,7 @@ class Solution {
         Map<String, Integer> ranking = new HashMap<>();
         for(int i = 0; i < n; i++){
             ranking.put(players[i], i);
+            
         }// 순서를 넣기
         
         for(String player : callings){
@@ -13,10 +14,10 @@ class Solution {
             
             String frontPlayer = players[playerRanking - 1];
             
-            ranking.replace(frontPlayer, playerRanking);
+            ranking.put(frontPlayer, playerRanking);
             players[playerRanking] = frontPlayer;
             
-            ranking.replace(player, playerRanking-1);
+            ranking.put(player, playerRanking-1);
             players[playerRanking-1] = player;
             
         }
