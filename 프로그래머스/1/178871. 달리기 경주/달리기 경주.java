@@ -21,9 +21,6 @@ class Solution {
             players[playerRanking-1] = player;
             
         }
-        
-        
-        
         return players;
     }
 }
