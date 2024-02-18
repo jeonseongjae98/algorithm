@@ -39,6 +39,7 @@ class Solution {
         }
 
         Arrays.sort(receiveCount);
+        
 
         return receiveCount[receiveCount.length-1];
     }
