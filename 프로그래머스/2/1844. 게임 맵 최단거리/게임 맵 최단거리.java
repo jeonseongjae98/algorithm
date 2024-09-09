@@ -16,11 +16,10 @@ class Solution {
         return answer;
     }
     public void bfs(int[][] maps, int[][] visited){
-        int x = 0;
-        int y = 0;
-        visited[x][y] = 1;
+
+        visited[0][0] = 1;
         Queue<int[]> queue = new LinkedList<>();
-        queue.add(new int[]{x, y});
+        queue.add(new int[]{0, 0});
         
         while(!queue.isEmpty()){
             int[] cur = queue.remove();
