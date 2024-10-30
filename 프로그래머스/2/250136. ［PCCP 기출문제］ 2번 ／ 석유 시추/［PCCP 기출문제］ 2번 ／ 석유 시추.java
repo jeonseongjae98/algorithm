@@ -1,63 +1,62 @@
 import java.util.*;
+
 class Solution {
-    private boolean[][] visited;
-    private int[] dy = new int[]{1,-1,0,0};
-    private int[] dx = new int[]{0,0,1,-1};
-    private int[] fuel;
-    private int answer = 0;
-    public void bfs(int y,int x,int[][] land){
-        ArrayDeque<int[]> que = new ArrayDeque<>();
-        que.offer(new int[]{y,x});
-        boolean[] visitedY = new boolean[land[0].length];
-        visited[y][x]=true;
-        visitedY[x]=true;
-        int maxY = land.length;
-        int maxX = land[0].length;
-        int total = 1;
-        while(!que.isEmpty()){
-            int[] cur = que.poll();
-            for(int i = 0; i < 4; i++){
-                int ty = cur[0]+dy[i];
-                int tx = cur[1]+dx[i];
+    static int[] dx = {-1, 1, 0, 0};
+    static int[] dy = {0, 0, -1, 1};
+    static boolean[][] visited;
+    static int[] answer;
 
-                //OOM
-                if(0 > ty || ty >= maxY || 0 > tx || tx >= maxX){
-                    continue;
-                }
-
-                //땅이거나 이미 탐색했한 경우
-                if(land[ty][tx]==0 || visited[ty][tx]){
-                    continue;
-                }
-
-                visited[ty][tx]=true;
-                if(!visitedY[tx]){
-                    visitedY[tx]=true;
-                }
-                que.offer(new int[]{ty,tx});
-                total += 1;
-            }
-        }
-        for(int i = 0,iEnd=land[0].length; i < iEnd; i++){
-            if(visitedY[i]){
-                fuel[i]+=total;
-                if(answer < fuel[i]){
-                    answer = fuel[i];
-                }
-            }
-        }
-    }
     public int solution(int[][] land) {
+        answer = new int[land[0].length]; // 각 열별로 누적할 석유 양
         visited = new boolean[land.length][land[0].length];
-        fuel = new int [land[0].length];
 
-        for(int i = 0; i < land.length; i++){
-            for(int j = 0; j < land[0].length; j++){
-                if(land[i][j]==1 && !visited[i][j]){
-                    bfs(i,j,land);
+        for (int i = 0; i < land.length; i++) {
+            for (int j = 0; j < land[0].length; j++) {
+                if (!visited[i][j] && land[i][j] == 1) {
+                    bfs(i, j, land);
                 }
             }
         }
-        return answer;
+
+        int max = 0;
+        for (int a : answer) {
+            max = Math.max(a, max);
+        }
+
+        return max;
+    }
+
+    public static void bfs(int x, int y, int[][] land) {
+        Queue<int[]> queue = new LinkedList<>();
+        queue.offer(new int[]{x, y});
+        visited[x][y] = true;
+
+        // 석유가 있는 열을 담을 리스트
+        Set<Integer> cols = new HashSet<>();
+        cols.add(y);
+        int cnt = 1; // 석유 수
+
+        while (!queue.isEmpty()) {
+            int[] cur = queue.poll();
+
+            for (int i = 0; i < 4; i++) {
+                int nx = cur[0] + dx[i];
+                int ny = cur[1] + dy[i];
+
+                if (nx >= 0 && nx < land.length && ny >= 0 && ny < land[0].length) {
+                    if (!visited[nx][ny] && land[nx][ny] == 1) {
+                        visited[nx][ny] = true;
+                        queue.offer(new int[]{nx, ny});
+
+                        cols.add(ny); // 열 위치 저장
+                        cnt++;
+                    }
+                }
+            }
+        }
+
+        for (int col : cols) {
+            answer[col] += cnt;
+        }
     }
 }
