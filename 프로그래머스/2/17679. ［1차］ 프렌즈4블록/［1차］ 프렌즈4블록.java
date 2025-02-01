@@ -1,61 +1,65 @@
 import java.util.*;
+
 class Solution {
     public int solution(int m, int n, String[] board) {
-        int answer = 0;
-        char[][] table = new char[m][n];
-        for(int i=0;i<m;i++){
-            table[i]=board[m-i-1].toCharArray();
+        char[][] grid = new char[m][n];
+        
+        // board 입력을 char 배열로 변환
+        for (int i = 0; i < m; i++) {
+            grid[i] = board[i].toCharArray();
         }
-        //몇번 지워질지 모르니 무한반복
-        while(true){
-        boolean flag=true;
-        boolean[][] check =new boolean[m][n];
-        //블록체크
-        for(int i=0;i<m-1;i++){
-            for(int j=0;j<n-1;j++){
-                if(table[i][j]=='-'){
-                    continue;
-                }
-                char a =table[i][j];
-                if(table[i][j+1]==a&&table[i+1][j]==a&&table[i+1][j+1]==a){
-                    check[i][j]=true;
-                    check[i][j+1]=true;
-                    check[i+1][j]=true;
-                    check[i+1][j+1]=true;
-                    flag=false;
-                }
-            }
-        }
+        
+        int totalRemoved = 0;
+        
+        while (true) {
+            // 제거할 블록 찾기
+            boolean[][] marked = new boolean[m][n];
+            boolean found = false;
             
-         //블록체크가 안됬으면 == 지울 블록이없으면 반복문 종료
-        if(flag){
-            break;
-        }
-        //체크된 블록 삭제("-"으로 변환)
-        for(int i=0;i<m;i++){
-            for(int j=0;j<n;j++){
-                if(check[i][j]){
-                    table[i][j]='-';
-                    answer++;
+            for (int i = 0; i < m - 1; i++) {
+                for (int j = 0; j < n - 1; j++) {
+                    char c = grid[i][j];
+                    if (c != ' ' && c == grid[i][j + 1] && c == grid[i + 1][j] && c == grid[i + 1][j + 1]) {
+                        marked[i][j] = true;
+                        marked[i][j + 1] = true;
+                        marked[i + 1][j] = true;
+                        marked[i + 1][j + 1] = true;
+                        found = true;
+                    }
+                }
+            }
+            
+            // 찾은 블록이 없다면 정지
+            if (!found) break;
+            
+            // 블록 카운트 및 제거
+            int removed = 0;
+            for (int i = 0; i < m; i++) {
+                for (int j = 0; j < n; j++) {
+                    if (marked[i][j]) {
+                        grid[i][j] = ' ';
+                        removed++;
+                    }
+                }
+            }
+            totalRemoved += removed;
+            
+            // 블록 떨어뜨리기
+            for (int j = 0; j < n; j++) {
+                for (int i = m - 1; i >= 0; i--) {
+                    if (grid[i][j] == ' ') {
+                        // 다음 떨어질 블록 찾기
+                        int k = i - 1;
+                        while (k >= 0 && grid[k][j] == ' ') k--;
+                        if (k >= 0) {
+                            grid[i][j] = grid[k][j];
+                            grid[k][j] = ' ';
+                        }
+                    }
                 }
             }
         }
-        //블록 내리기 (윗블록과 스왑하기)
-        for(int i=0;i<m;i++){
-            for(int j=0;j<n;j++){
-                if(table[i][j]=='-'){
-                   for(int k=i;k<m;k++){
-                       if(table[k][j]=='-'){
-                           continue;
-                       }
-                       table[i][j]=table[k][j];
-                       table[k][j]='-';
-                       break;
-                   }
-                }
-            }
-        }
-    }   
-        return answer;
+        
+        return totalRemoved;
     }
 }
