@@ -1,19 +1,19 @@
-import java.util.HashSet;
-
-public class Solution {
+import java.util.*;
+class Solution {
     public int solution(int[] nums) {
-        int max = nums.length / 2;
-
-        HashSet<Integer> hashSet = new HashSet<>();
-
-        for (int n : nums) {
-            hashSet.add(n); //중복 제거
+        HashSet<Integer> hs = new HashSet<Integer>();
+        int answer = 0;
+        for(int i = 0; i < nums.length; i++){
+            hs.add(nums[i]);
         }
-
-        if (max >= hashSet.size()) {
-            return hashSet.size();
-        } else {
-            return max;
+        int n = hs.size();
+        if(n < nums.length/2){
+            answer = n;
         }
+        else{
+            answer = nums.length/2;
+        }
+        
+        return answer;
     }
 }
