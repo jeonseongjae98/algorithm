@@ -1,10 +1,10 @@
 # [level 2] 최솟값 만들기 - 12941 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/12941) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/12941?language=python3) 
 
 ### 성능 요약
 
-메모리: 53.9 MB, 시간: 2.31 ms
+메모리: 9.35 MB, 시간: 0.49 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2024년 12월 18일 22:59:09
+2025년 04월 29일 00:59:41
 
 ### 문제 설명
 
