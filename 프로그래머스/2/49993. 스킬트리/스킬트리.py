@@ -6,7 +6,7 @@ def solution(skill, skill_trees):
             if st in skill:
                 s+=st
     
-        if skill[:len(s)] == s:
+        if skill.startswith(s):
             answer+=1
     
     
