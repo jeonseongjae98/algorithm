@@ -1,10 +1,10 @@
 # [level 2] 광물 캐기 - 172927 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/172927) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/172927?language=python3) 
 
 ### 성능 요약
 
-메모리: 74.5 MB, 시간: 1.56 ms
+메모리: 9.17 MB, 시간: 0.04 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2024년 04월 25일 21:07:57
+2025년 06월 25일 22:45:56
 
 ### 문제 설명
 
