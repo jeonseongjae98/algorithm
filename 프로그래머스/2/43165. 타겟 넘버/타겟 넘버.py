@@ -1,11 +1,12 @@
 def solution(numbers, target):
     answer = 0
     n = len(numbers)
+    
     def dfs(idx, result):
+        nonlocal answer
         if idx == n:
             if result == target:
-                nonlocal answer
-                answer += 1
+                answer+=1
             return
         else:
             dfs(idx+1, result+numbers[idx])
