@@ -1,7 +1,9 @@
 def solution(s):
     answer = ''
-    l = list(map(int, s.split()))
-    ma = max(l)
-    mi = min(l)
-    answer = str(mi) + " " + str(ma)
+    s = s.split(' ')
+    s = list(map(int, s))
+    answer+= str(min(s))
+    answer+= " "
+    answer+= str(max(s))
+    
     return answer
