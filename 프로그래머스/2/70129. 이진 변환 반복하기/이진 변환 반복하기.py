@@ -1,15 +1,10 @@
 def solution(s):
-    answer = []
-    cnt=0
-    zerocnt=0
-    
-    while True:
-        if s == "1":
-            break
-        zerocnt+=s.count("0")
-        s=s.replace("0", "")
-        s=bin(len(s))
-        s=s[2:]
+    cnt0 = 0
+    cnt = 0
+    while(s != "1"):
         cnt+=1
-    answer=[cnt, zerocnt]
-    return answer
+        cnt0 += s.count('0')
+        s = s.replace('0', '')
+        s = bin(len(s))[2:]
+        
+    return [cnt, cnt0]
