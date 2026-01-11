@@ -1,6 +1,12 @@
 def solution(n):
-    c = n+1
-    while True:
-        if bin(c).count('1')==bin(n).count('1'):
-            return c
-        c+=1
+    answer = 0
+    cnt = 0
+    while(True):
+        cnt += 1
+        m = n + cnt
+        if bin(n)[2:].count('1') == bin(m)[2:].count('1'):
+            answer = m
+            break
+        
+    
+    return answer
