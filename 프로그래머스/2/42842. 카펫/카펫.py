@@ -1,7 +1,17 @@
 def solution(brown, yellow):
-    for i in range(1, yellow+1):
+    answer = []
+    yx = 0
+    yy = 0
+    
+    for i in range(1, int(yellow**0.5)+1):
         if yellow % i == 0:
-            yellow_row = int(yellow/i)
-            yellow_col = i
-            if(2*(yellow_row+yellow_col)+4==brown):
-                return [yellow_row+2, yellow_col+2]
+            yx = yellow // i
+            yy = i
+            if 2*yx + 2*yy + 4 == brown:
+                answer.append(yx+2)
+                answer.append(yy+2)
+                break
+    
+    answer.sort(reverse = True)
+            
+    return answer
