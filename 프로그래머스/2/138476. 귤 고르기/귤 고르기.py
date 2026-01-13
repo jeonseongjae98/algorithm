@@ -1,18 +1,15 @@
 def solution(k, tangerine):
     answer = 0
-    
-    d = {}
+    dic = {}
     for i in tangerine:
-        if i in d:
-            d[i] +=1
+        if i in dic:
+            dic[i] += 1
         else:
-            d[i] = 1
-    
-    d = sorted(d.items(), key = lambda x : x[1], reverse = True)
-    for i in d:
-        k -= i[1]
-        answer += 1
+            dic[i] = 1
+    sortdic = sorted(dic.items(), key=lambda item:item[1], reverse=True)
+    for _, i in sortdic:
+        k -= i
+        answer+=1
         if k <= 0:
             break
-            
     return answer
