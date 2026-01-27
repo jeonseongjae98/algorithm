@@ -1,10 +1,10 @@
 # [level 2] N개의 최소공배수 - 12953 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/12953?language=python3) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/12953) 
 
 ### 성능 요약
 
-메모리: 9.16 MB, 시간: 0.01 ms
+메모리: 9.16 MB, 시간: 0.00 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2025년 05월 02일 20:52:10
+2026년 01월 27일 20:58:26
 
 ### 문제 설명
 
