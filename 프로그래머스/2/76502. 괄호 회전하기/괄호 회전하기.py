@@ -1,27 +1,22 @@
-from collections import deque
-
 def solution(s):
     answer = 0
-    que = deque(s)
-    
-    for _ in range(len(que)):
-        stack = []
-        flag = True
-        for el in que:
-            if el in '({[':
-                stack.append(el)
+    s = list(s)
+    for _ in range(len(s)):
+        st = []
+        for i in range(len(s)):
+            if len(st)>0:
+                if st[-1] == '[' and s[i] == ']':
+                    st.pop()
+                elif st[-1] == '{' and s[i] == '}':
+                    st.pop()
+                elif st[-1] == '(' and s[i] == ')':
+                    st.pop()
+                else:
+                    st.append(s[i])
             else:
-                if not stack:
-                    flag = False
-                    break
-                top = stack.pop()
-                if (top == '(' and el != ')') or \
-                   (top == '{' and el != '}') or \
-                   (top == '[' and el != ']'):
-                    flag = False
-                    break
-        # 모든 문자 처리 후 최종 검사
-        if flag and not stack:
-            answer += 1
-        que.append(que.popleft())
+                st.append(s[i])
+        
+        if len(st) == 0:
+            answer+=1
+        s.append(s.pop(0))
     return answer
