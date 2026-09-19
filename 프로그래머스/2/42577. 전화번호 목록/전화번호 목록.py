@@ -1,14 +1,12 @@
 def solution(phone_book):
-    answer = True
-    hash = {}
+    hash_map = {}
     for pn in phone_book:
-        hash[pn] = 1
-    
+        hash_map[pn] = 1
+        
     for pn in phone_book:
-        jd= ""
-        for number in pn:
-            jd+=number
-            if jd in hash and jd != pn:
+        jd = ""
+        for n in pn:
+            jd += n
+            if jd in hash_map and jd != pn:
                 return False
-    
-    return answer
+    return True
